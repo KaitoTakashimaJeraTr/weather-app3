@@ -19,15 +19,29 @@ import org.jetbrains.compose.resources.painterResource
 @Composable
 fun App() {
     MaterialTheme {
-        var greetingText by remember { mutableStateOf("Hello, World!") }
+        var greetingText by remember { mutableStateOf("あああああああ") }
         var showImage by remember { mutableStateOf(false) }
-        Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+
+        Column(
+            Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+
+            // 1つ目のボタン
             Button(onClick = {
                 greetingText = "Hello, ${getPlatformName()}"
                 showImage = !showImage
             }) {
                 Text(greetingText)
             }
+
+            // 2つ目のボタン（追加）
+            Button(onClick = {
+                greetingText = "2つ目のボタンが押されました"
+            }) {
+                Text("別のボタン")
+            }
+
             AnimatedVisibility(showImage) {
                 Image(
                     painterResource("compose-multiplatform.xml"),
@@ -37,5 +51,6 @@ fun App() {
         }
     }
 }
+
 
 expect fun getPlatformName(): String
